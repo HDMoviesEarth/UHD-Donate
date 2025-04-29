@@ -27,7 +27,7 @@ function handleDownload() {
 function handlePay() {
     showToast("Opening UPI app(s)");
     setTimeout(() => {
-        window.location.href = "upi://pay?pa=TechifyRahul@UPI&pn=Rahul%20Dhankhar&mc=0000&mode=02&purpose=00"; // Replace upi id and name keep the format same
+        window.location.href = "upi://pay?pa=ankanmistri642-1@oksbi&pn=Mithu%20Mistri&mc=0000&mode=02&purpose=00"; // Replace upi id and name keep the format same
     }, 3000);
 }
 
