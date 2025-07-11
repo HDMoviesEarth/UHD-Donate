@@ -22,16 +22,29 @@
             color: var(--star-dust);
             overflow-x: hidden;
             min-height: 100vh;
+            margin: 0;
+            padding: 0;
         }
 
-        #video-background {
+        #video-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
             z-index: -1;
+            overflow: hidden;
+        }
+        
+        #video-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
             opacity: 0.4;
         }
         
@@ -166,10 +179,12 @@
 </head>
 <body>
     <!-- Earth Rotation Video Background -->
-    <video autoplay muted loop id="video-background">
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-earth-rotating-1618-large.mp4" type="video/mp4">
-        Your browser does not support HTML5 video.
-    </video>
+    <div id="video-container">
+        <video autoplay muted loop id="video-background">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-earth-rotating-1618-large.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
 
     <div class="content-overlay">
         <!-- Floating Background Elements -->
@@ -347,7 +362,7 @@
             
             // Get amount
             const customAmount = parseFloat(document.getElementById('customAmount').value);
-            if (customAmount && !isNaN(customAmount) {
+            if (customAmount && !isNaN(customAmount)) {
                 selectedAmount = customAmount;
             }
             
@@ -423,7 +438,11 @@
             
             // Make sure video plays
             const video = document.getElementById('video-background');
-            video.play().catch(e => console.log("Video autoplay prevented:", e));
+            video.play().catch(e => {
+                // If autoplay fails, mute and try again
+                video.muted = true;
+                video.play().catch(e => console.log("Video play failed:", e));
+            });
         });
     </script>
 </body>
