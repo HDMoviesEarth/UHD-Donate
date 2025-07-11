@@ -81,6 +81,7 @@
             padding: 15px;
             transition: all 0.3s;
             cursor: pointer;
+            height: 100%;
         }
         
         .payment-method:hover {
@@ -119,17 +120,31 @@
             z-index: -1;
         }
         
+        .payment-img {
+            height: 30px;
+            object-fit: contain;
+            margin-bottom: 8px;
+        }
+        
         @media (max-width: 768px) {
             .navbar-brand {
                 font-size: 1.5rem;
+            }
+            
+            .payment-method {
+                padding: 10px;
+            }
+            
+            .payment-img {
+                height: 25px;
             }
         }
     </style>
 </head>
 <body>
     <!-- Floating Background Elements -->
-    <div class="floating-element" style="width: 300px; height: 300px; background: var(--neon-blue); top: 10%; left: 5%; animation: float 15s infinite ease-in-out;"></div>
-    <div class="floating-element" style="width: 400px; height: 400px; background: var(--neon-pink); bottom: 15%; right: 5%; animation: float 20s infinite ease-in-out reverse;"></div>
+    <div class="floating-element" style="width: 300px; height: 300px; background: var(--neon-blue); top: 10%; left: 5%;"></div>
+    <div class="floating-element" style="width: 400px; height: 400px; background: var(--neon-pink); bottom: 15%; right: 5%;"></div>
     
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -204,27 +219,39 @@
                             <h4 class="neon-text mb-4">SELECT PAYMENT METHOD</h4>
                             <div class="row g-3">
                                 <div class="col-6 col-md-3">
-                                    <div class="payment-method text-center py-3" onclick="selectPayment('upi')">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/UPI-Logo-vector.svg" alt="UPI" style="height: 30px;">
-                                        <p class="mt-2 mb-0 small">Any UPI App</p>
+                                    <div class="payment-method text-center py-3" onclick="selectPayment('bhim')">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/BHIM_Logo.svg/1200px-BHIM_Logo.svg.png" alt="BHIM" class="payment-img">
+                                        <p class="mt-2 mb-0 small">BHIM</p>
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-3">
                                     <div class="payment-method text-center py-3" onclick="selectPayment('paytm')">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Paytm_logo.png" alt="Paytm" style="height: 30px;">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Paytm_logo.png" alt="Paytm" class="payment-img">
                                         <p class="mt-2 mb-0 small">Paytm</p>
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-3">
                                     <div class="payment-method text-center py-3" onclick="selectPayment('phonepe')">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/PhonePe_Logo.svg" alt="PhonePe" style="height: 30px;">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/PhonePe_Logo.svg" alt="PhonePe" class="payment-img">
                                         <p class="mt-2 mb-0 small">PhonePe</p>
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-3">
                                     <div class="payment-method text-center py-3" onclick="selectPayment('gpay')">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Google_Pay_%28GPay%29_Logo_%282018-2020%29.svg" alt="GPay" style="height: 30px;">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Google_Pay_%28GPay%29_Logo_%282018-2020%29.svg" alt="GPay" class="payment-img">
                                         <p class="mt-2 mb-0 small">Google Pay</p>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="payment-method text-center py-3" onclick="selectPayment('navi')">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Navi_Technologies_logo.svg/1200px-Navi_Technologies_logo.svg.png" alt="Navi" class="payment-img">
+                                        <p class="mt-2 mb-0 small">Navi</p>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="payment-method text-center py-3" onclick="selectPayment('supermoney')">
+                                        <img src="https://play-lh.googleusercontent.com/6iyA2zVz5PyyMjK5SIxdUhrb7oh9cYvXrCEFJ6m7Dq1MqP9T8VfLnpBkU7U7ifhYMA=w240-h480-rw" alt="Super.money" class="payment-img">
+                                        <p class="mt-2 mb-0 small">Super.money</p>
                                     </div>
                                 </div>
                             </div>
@@ -269,16 +296,13 @@
             // Update UI
             document.querySelectorAll('.payment-method').forEach(el => {
                 if (el.querySelector('img')) {
-                    if ((method === 'upi' && el.innerHTML.includes('UPI')) ||
-                        (method === 'paytm' && el.innerHTML.includes('Paytm')) ||
-                        (method === 'phonepe' && el.innerHTML.includes('PhonePe')) ||
-                        (method === 'gpay' && el.innerHTML.includes('GPay'))) {
-                        el.classList.add('active');
-                    } else {
-                        el.classList.remove('active');
-                    }
+                    el.classList.remove('active');
                 }
             });
+            
+            // Activate selected
+            const activeEl = document.querySelector(`.payment-method[onclick="selectPayment('${method}')"]`);
+            if (activeEl) activeEl.classList.add('active');
         }
         
         // Form submission
@@ -320,8 +344,8 @@
             // Redirect based on payment method
             setTimeout(() => {
                 switch(method) {
-                    case 'upi':
-                        window.location.href = `upi://pay?pa=${upiId}&pn=UHD Premium&am=${amount}&tn=${encodeURIComponent(transactionNote)}`;
+                    case 'bhim':
+                        window.location.href = `bhim://upi/pay?pa=${upiId}&pn=UHD Premium&am=${amount}&tn=${encodeURIComponent(transactionNote)}`;
                         break;
                     case 'paytm':
                         window.location.href = `https://paytm.com/pay?amount=${amount}`;
@@ -331,6 +355,12 @@
                         break;
                     case 'gpay':
                         window.location.href = `tez://upi/pay?pa=${upiId}&pn=UHD Premium&am=${amount}`;
+                        break;
+                    case 'navi':
+                        window.location.href = `navi://upi/pay?pa=${upiId}&pn=UHD Premium&am=${amount}`;
+                        break;
+                    case 'supermoney':
+                        window.location.href = `supermoney://pay?upiId=${upiId}&amount=${amount}`;
                         break;
                 }
                 
@@ -361,7 +391,3 @@
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             floatAnimation();
-        });
-    </script>
-</body>
-</html>
