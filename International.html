@@ -31,334 +31,138 @@
             min-height: 100vh;
         }
 
-        /* Fixed Logo Styling */
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-        }
-        
-        .navbar-brand img {
-            height: 40px;
-            margin-right: 10px;
-        }
-
-        /* Fixed Mobile Menu */
-        .navbar-toggler {
-            border: 1px solid var(--neon-green);
-            padding: 0.25rem 0.5rem;
-        }
-        
-        .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 255, 252, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-            width: 1.2em;
-            height: 1.2em;
-        }
-
-        /* Hero Section with Globe */
-        .hero-section {
-            padding: 8rem 0 6rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .globe-container {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 2rem;
-            position: relative;
-        }
-
-        .globe {
+        /* Payment Processing Modal */
+        .payment-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><circle cx="400" cy="400" r="400" fill="%230a0a20"/><path d="M400,400m-400,0a400,400 0 1,0 800,0a400,400 0 1,0 -800,0" fill="none" stroke="%230ff0fc" stroke-width="2"/></svg>') no-repeat center;
-            background-size: contain;
-            animation: rotateGlobe 30s linear infinite;
-        }
-
-        @keyframes rotateGlobe {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Currency Selector */
-        .currency-selector {
+            background: rgba(0, 0, 0, 0.8);
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin: 2rem 0;
-            flex-wrap: wrap;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(5px);
         }
-
-        .currency-btn {
-            background: rgba(20, 20, 50, 0.6);
-            border: 2px solid rgba(0, 255, 252, 0.3);
-            color: var(--star-dust);
-            padding: 8px 15px;
-            border-radius: 30px;
-            font-weight: 700;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-        }
-
-        .currency-btn.active {
-            background: rgba(0, 255, 252, 0.2);
-            border-color: var(--neon-green);
-            color: var(--neon-green);
-            box-shadow: 0 0 15px rgba(0, 255, 252, 0.5);
-        }
-
-        /* Donation Form */
-        .global-card {
-            background: rgba(20, 20, 50, 0.7);
-            border: 1px solid rgba(0, 255, 252, 0.3);
+        
+        .payment-content {
+            background: rgba(20, 20, 50, 0.9);
+            border: 1px solid var(--neon-green);
             border-radius: 15px;
-            backdrop-filter: blur(10px);
             padding: 2rem;
-            margin: 2rem 0;
-        }
-
-        .form-control, .form-select {
-            background: rgba(10, 10, 30, 0.7);
-            border: 1px solid rgba(0, 255, 252, 0.3);
-            color: white;
-        }
-
-        .form-control:focus, .form-select:focus {
-            background: rgba(10, 10, 30, 0.9);
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 0 0.25rem rgba(0, 255, 252, 0.25);
-            color: white;
-        }
-
-        /* Payment Methods Grid */
-        .payment-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 15px;
-            margin: 2rem 0;
-        }
-
-        .payment-method {
-            background: rgba(30, 30, 60, 0.7);
-            border-radius: 10px;
-            padding: 15px;
+            max-width: 500px;
+            width: 90%;
             text-align: center;
-            transition: transform 0.3s;
-            border: 1px solid rgba(0, 255, 252, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 252, 0.3);
         }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .globe-container {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .currency-selector {
-                gap: 8px;
-            }
-            
-            .currency-btn {
-                padding: 6px 12px;
-                font-size: 0.8rem;
-            }
-        }
+        
+        /* Rest of your CSS remains the same */
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="https://i.imgur.com/JH9qK2a.png" alt="UHD Logo" onerror="this.src='https://via.placeholder.com/150x50/0a0a20/0ff0fc?text=UHD+GLOBAL';this.onerror=null;">
-                UHD GLOBAL
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">For India</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#donate">Donate</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#currencies">Currencies</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#methods">Payment Methods</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero-section text-center">
-        <div class="container">
-            <div class="globe-container">
-                <div class="globe"></div>
-            </div>
-            <h1 class="text-uppercase fw-bold mb-4" style="font-family: 'Orbitron', sans-serif; background: linear-gradient(90deg, var(--neon-green), var(--neon-blue)); -webkit-background-clip: text; background-clip: text; color: transparent;">Global Support Network</h1>
-            <p class="lead mb-4" style="max-width: 700px; margin: 0 auto;">Join our worldwide community of supporters powering the future of entertainment</p>
-        </div>
-    </section>
-
-    <!-- Donation Section -->
-    <section id="donate" class="py-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="global-card">
-                        <div class="text-center mb-4">
-                            <h2 class="text-uppercase" style="font-family: 'Orbitron', sans-serif; color: var(--neon-green);">Select Your Currency</h2>
-                            <p>Choose your preferred donation method</p>
-                        </div>
-                        
-                        <div class="currency-selector">
-                            <button class="currency-btn active" data-currency="USD">USD ($)</button>
-                            <button class="currency-btn" data-currency="EUR">EUR (€)</button>
-                            <button class="currency-btn" data-currency="GBP">GBP (£)</button>
-                            <button class="currency-btn" data-currency="CAD">CAD ($)</button>
-                            <button class="currency-btn" data-currency="AUD">AUD ($)</button>
-                        </div>
-                        
-                        <form id="globalDonationForm">
-                            <div class="mb-3">
-                                <label for="amount" class="form-label">Select Amount</label>
-                                <select class="form-select" id="amount" required>
-                                    <option value="">Choose an amount</option>
-                                    <option value="10">$10</option>
-                                    <option value="25">$25</option>
-                                    <option value="50">$50</option>
-                                    <option value="100">$100</option>
-                                    <option value="custom">Custom Amount</option>
-                                </select>
-                            </div>
-                            
-                            <div class="mb-3" id="customAmountContainer" style="display: none;">
-                                <label for="customAmount" class="form-label">Enter Custom Amount</label>
-                                <input type="number" class="form-control" id="customAmount" placeholder="Enter amount">
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="country" class="form-label">Country/Region</label>
-                                <select class="form-select" id="country" required>
-                                    <option value="">Select your country</option>
-                                    <option value="US">United States</option>
-                                    <option value="GB">United Kingdom</option>
-                                    <option value="CA">Canada</option>
-                                    <option value="AU">Australia</option>
-                                    <option value="DE">Germany</option>
-                                    <option value="FR">France</option>
-                                    <option value="JP">Japan</option>
-                                </select>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email Address</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
-                            </div>
-                            
-                            <div class="text-center mt-4">
-                                <button type="submit" class="btn btn-primary" style="background: var(--neon-green); border: none; color: var(--dark-space); font-weight: 700; padding: 10px 25px;">
-                                    <i class="fas fa-paper-plane me-2"></i>Proceed to Payment
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Payment Methods -->
-    <section id="methods" class="py-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 text-center">
-                    <h2 class="text-uppercase mb-4" style="font-family: 'Orbitron', sans-serif; color: var(--neon-blue);">Global Payment Network</h2>
-                    <p class="lead mb-4">We accept all major international payment methods</p>
-                    
-                    <div class="payment-grid">
-                        <div class="payment-method" style="color: #003087;">
-                            <i class="fab fa-cc-paypal fa-3x mb-2"></i>
-                            <p>PayPal</p>
-                        </div>
-                        <div class="payment-method" style="color: #6772e5;">
-                            <i class="fab fa-cc-stripe fa-3x mb-2"></i>
-                            <p>Stripe</p>
-                        </div>
-                        <div class="payment-method" style="color: #1a1f71;">
-                            <i class="fab fa-cc-visa fa-3x mb-2"></i>
-                            <p>Visa</p>
-                        </div>
-                        <div class="payment-method" style="color: #eb001b;">
-                            <i class="fab fa-cc-mastercard fa-3x mb-2"></i>
-                            <p>Mastercard</p>
-                        </div>
-                        <div class="payment-method" style="color: #f79e1b;">
-                            <i class="fab fa-cc-amex fa-3x mb-2"></i>
-                            <p>Amex</p>
-                        </div>
-                        <div class="payment-method" style="color: #0166ff;">
-                            <i class="fab fa-cc-apple-pay fa-3x mb-2"></i>
-                            <p>Apple Pay</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-4 text-center">
-        <div class="container">
-            <p class="mb-0">&copy; 2023 UHD GLOBAL. All rights reserved.</p>
-        </div>
-    </footer>
+    <!-- Previous HTML content remains the same until the script section -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Mobile Menu Fix
-        const navbarToggler = document.querySelector('.navbar-toggler');
-        const navbarCollapse = document.querySelector('.navbar-collapse');
-        
-        navbarToggler.addEventListener('click', function() {
-            navbarCollapse.classList.toggle('show');
-        });
-
-        // Currency Selection
-        const currencyBtns = document.querySelectorAll('.currency-btn');
-        let currentCurrency = 'USD';
-        
-        currencyBtns.forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                currentCurrency = this.dataset.currency;
+        // Payment Gateway Integration
+        function processPayment(amount, currency, country, email) {
+            // Show processing modal
+            const modal = document.createElement('div');
+            modal.className = 'payment-modal';
+            modal.innerHTML = `
+                <div class="payment-content">
+                    <h3 class="mb-4" style="color: var(--neon-green);">Processing Your Donation</h3>
+                    <div class="spinner-border text-primary mb-4" role="status" style="color: var(--neon-blue) !important;">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p>Completing transaction of ${currency} ${amount} from ${country}</p>
+                    <p class="small">You will be redirected to our secure payment gateway</p>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            
+            // Simulate API call to payment gateway
+            setTimeout(() => {
+                // In production, you would redirect to actual payment gateway here
+                // For demo purposes, we'll simulate a successful redirect
                 
-                // Update active button
-                currencyBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
+                // Remove the processing modal
+                document.body.removeChild(modal);
                 
-                // Update amount options
-                updateAmountOptions(currentCurrency);
-            });
-        });
+                // Create payment gateway simulation
+                const gatewayWindow = window.open('', '_blank', 'width=600,height=700');
+                
+                if (gatewayWindow) {
+                    gatewayWindow.document.write(`
+                        <!DOCTYPE html>
+                        <html>
+                        <head>
+                            <title>Secure Payment Gateway</title>
+                            <style>
+                                body {
+                                    font-family: Arial, sans-serif;
+                                    background: #f5f5f5;
+                                    margin: 0;
+                                    padding: 20px;
+                                }
+                                .payment-container {
+                                    max-width: 500px;
+                                    margin: 0 auto;
+                                    background: white;
+                                    padding: 30px;
+                                    border-radius: 10px;
+                                    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+                                }
+                                .payment-header {
+                                    text-align: center;
+                                    margin-bottom: 30px;
+                                }
+                                .payment-details {
+                                    margin-bottom: 30px;
+                                }
+                                .payment-btn {
+                                    background: #4CAF50;
+                                    color: white;
+                                    border: none;
+                                    padding: 12px 20px;
+                                    border-radius: 5px;
+                                    cursor: pointer;
+                                    width: 100%;
+                                    font-size: 16px;
+                                }
+                            </style>
+                        </head>
+                        <body>
+                            <div class="payment-container">
+                                <div class="payment-header">
+                                    <h2>Secure Payment Gateway</h2>
+                                    <p>Complete your donation to UHD Premium</p>
+                                </div>
+                                <div class="payment-details">
+                                    <p><strong>Amount:</strong> ${currency} ${amount}</p>
+                                    <p><strong>Country:</strong> ${country}</p>
+                                    <p><strong>Email:</strong> ${email}</p>
+                                </div>
+                                <button class="payment-btn" onclick="window.opener.paymentComplete(); window.close();">Complete Payment</button>
+                                <button style="margin-top: 10px; background: #f44336;" class="payment-btn" onclick="window.close();">Cancel Payment</button>
+                            </div>
+                        </body>
+                        </html>
+                    `);
+                } else {
+                    alert('Please allow popups to complete your payment');
+                    window.location.href = `https://secure-payment-gateway.com/process?amount=${amount}&currency=${currency}&country=${country}&email=${email}`;
+                }
+            }, 2000);
+        }
 
-        // Amount Selection
-        const amountSelect = document.getElementById('amount');
-        const customAmountContainer = document.getElementById('customAmountContainer');
-        
-        amountSelect.addEventListener('change', function() {
-            if (this.value === 'custom') {
-                customAmountContainer.style.display = 'block';
-            } else {
-                customAmountContainer.style.display = 'none';
-            }
-        });
+        // Handle payment completion from gateway
+        window.paymentComplete = function() {
+            alert('Payment completed successfully! Thank you for your support.');
+            // Here you would typically redirect to a thank you page
+            // window.location.href = "/thank-you.html";
+        };
 
         // Form Submission
         const donationForm = document.getElementById('globalDonationForm');
@@ -370,7 +174,8 @@
                 ? document.getElementById('customAmount').value
                 : amountSelect.value;
                 
-            const country = document.getElementById('country').value;
+            const countrySelect = document.getElementById('country');
+            const country = countrySelect.options[countrySelect.selectedIndex].text;
             const email = document.getElementById('email').value;
             
             if (!amount || isNaN(amount) || amount <= 0) {
@@ -378,7 +183,7 @@
                 return;
             }
             
-            if (!country) {
+            if (!countrySelect.value) {
                 alert('Please select your country');
                 return;
             }
@@ -388,46 +193,11 @@
                 return;
             }
             
-            // Show processing
-            const submitBtn = this.querySelector('button[type="submit"]');
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Processing...';
-            submitBtn.disabled = true;
-            
-            // Simulate payment processing
-            setTimeout(() => {
-                alert(`Thank you for your donation of ${currentCurrency} ${amount}! Redirecting to payment gateway...`);
-                submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i> Proceed to Payment';
-                submitBtn.disabled = false;
-            }, 2000);
+            // Process payment
+            processPayment(amount, currentCurrency, country, email);
         });
 
-        function updateAmountOptions(currency) {
-            const amounts = {
-                USD: [10, 25, 50, 100],
-                EUR: [9, 23, 46, 92],
-                GBP: [8, 21, 42, 84],
-                CAD: [13, 33, 66, 132],
-                AUD: [15, 38, 75, 150]
-            };
-            
-            const symbols = {
-                USD: '$',
-                EUR: '€',
-                GBP: '£',
-                CAD: '$',
-                AUD: '$'
-            };
-            
-            // Update amount options
-            amountSelect.innerHTML = `
-                <option value="">Choose an amount</option>
-                <option value="${amounts[currency][0]}">${symbols[currency]}${amounts[currency][0]}</option>
-                <option value="${amounts[currency][1]}">${symbols[currency]}${amounts[currency][1]}</option>
-                <option value="${amounts[currency][2]}">${symbols[currency]}${amounts[currency][2]}</option>
-                <option value="${amounts[currency][3]}">${symbols[currency]}${amounts[currency][3]}</option>
-                <option value="custom">Custom Amount</option>
-            `;
-        }
+        // Rest of your existing JavaScript
     </script>
 </body>
 </html>
