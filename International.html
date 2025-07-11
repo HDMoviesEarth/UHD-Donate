@@ -1,109 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>International Payment</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="icon" href="assets/favicon.png" type="image/x-icon" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      user-select: none
-    }
-
-    img {
-      pointer-events: none
-    }
-
-    .payment-method {
-      transition: all 0.3s ease
-    }
-
-    .payment-method:hover {
-      transform: translateY(-3px)
-    }
-  </style>
-  <script>document.addEventListener('contextmenu', event => event.preventDefault());</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support UHD - International Donors</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Keep the same CSS as index.html */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 4rem 0;
+        }
+        .donation-card {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .donation-card:hover {
+            transform: translateY(-5px);
+        }
+        .btn-donate {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 10px 25px;
+        }
+        .benefits-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .benefits-list li {
+            padding: 8px 0;
+        }
+        .benefits-list li i {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        .currency-selector {
+            cursor: pointer;
+        }
+    </style>
 </head>
-
-<body
-  class="bg-gradient-to-br from-indigo-500 to-slate-800 min-h-screen flex items-center justify-center px-4 relative">
-  <div id="toast"
-    class="hidden fixed top-6 left-1/2 transform -translate-x-1/2 bg-green-600 text-white shadow-lg px-5 py-3 rounded-xl text-sm font-medium z-50 transition duration-300">
-  </div>
-  <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full p-6 sm:p-8 space-y-6 text-center">
-    <h4 class="text-3xl font-bold text-slate-800"><span class="text-indigo-600">Rahul Dhankhar</span></h4>
-    <p class="text-slate-400"><i class="fa fa-lock"></i> Protected Payment Page</p>
-    <div class="space-y-4 mt-6">
-
-      <!-- Paypal -->
-      <div class="payment-method bg-slate-50 p-3 rounded-lg border border-slate-200">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-3">
-            <i class="fab fa-paypal text-2xl text-blue-500"></i>
-            <span class="font-semibold text-slate-700">Paypal</span>
-          </div>
-          <button onclick="copyPaymentAddress('paypal')"
-            class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded hover:bg-blue-200">
-            <i class="fas fa-external-link-alt"></i>
-            Open
-          </button>
+<body>
+    <!-- Navigation (same as index.html) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-film me-2"></i>UHD Premium
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">For Indian Donors</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
+    </nav>
 
-      <!-- Binance Pay -->
-      <div class="payment-method bg-slate-50 p-3 rounded-lg border border-slate-200">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-3">
-            <i class="fas fa-qrcode text-2xl text-yellow-500"></i>
-            <span class="font-semibold text-slate-700">Binance Pay</span>
-          </div>
-          <button onclick="copyPaymentAddress('binance')"
-            class="text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded hover:bg-yellow-200">
-            <i class="fa-solid fa-copy"></i>
-            Copy
-          </button>
+    <!-- Hero Section -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-4">International Support</h1>
+            <p class="lead mb-4">Support UHD Premium from anywhere in the world</p>
         </div>
-      </div>
+    </section>
 
-      <!-- Buy me a coffee -->
-      <div class="payment-method bg-slate-50 p-3 rounded-lg border border-slate-200">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-3">
-            <i class="fa-solid fa-coffee text-2xl text-purple-500"></i>
-            <span class="font-semibold text-slate-700">
-              Buy me a coffee</span>
-          </div>
-          <button onclick="copyPaymentAddress('coffee')"
-            class="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded hover:bg-purple-200">
-            <i class="fas fa-external-link-alt"></i>
-            Open
-          </button>
+    <!-- Donation Section -->
+    <section id="donate" class="py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center mb-5">
+                    <h2 class="fw-bold mb-3">Make an International Donation</h2>
+                    <div class="btn-group mb-3" role="group">
+                        <button type="button" class="btn btn-outline-primary currency-selector active" data-currency="USD">USD</button>
+                        <button type="button" class="btn btn-outline-primary currency-selector" data-currency="EUR">EUR</button>
+                        <button type="button" class="btn btn-outline-primary currency-selector" data-currency="GBP">GBP</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="donation-card bg-white p-4">
+                        <form id="internationalDonationForm">
+                            <div class="row mb-4">
+                                <div class="col-4">
+                                    <input type="radio" class="btn-check" name="amount" id="amount10" value="10" autocomplete="off">
+                                    <label class="btn btn-outline-primary w-100 py-3" for="amount10"><span class="currency-symbol">$</span>10</label>
+                                </div>
+                                <div class="col-4">
+                                    <input type="radio" class="btn-check" name="amount" id="amount20" value="20" autocomplete="off">
+                                    <label class="btn btn-outline-primary w-100 py-3" for="amount20"><span class="currency-symbol">$</span>20</label>
+                                </div>
+                                <div class="col-4">
+                                    <input type="radio" class="btn-check" name="amount" id="amount50" value="50" autocomplete="off">
+                                    <label class="btn btn-outline-primary w-100 py-3" for="amount50"><span class="currency-symbol">$</span>50</label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="customAmountInt" class="form-label">Or enter custom amount:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text currency-symbol">$</span>
+                                    <input type="number" class="form-control" id="customAmountInt" placeholder="Enter amount">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="country" class="form-label">Country</label>
+                                <select class="form-select" id="country" required>
+                                    <option value="">Select your country</option>
+                                    <option value="US">United States</option>
+                                    <option value="GB">United Kingdom</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="DE">Germany</option>
+                                    <!-- Add more countries as needed -->
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="emailInt" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="emailInt" placeholder="Enter your email" required>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-donate btn-lg text-white">
+                                    <i class="fas fa-heart me-2"></i> Donate Now
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
+    <!-- Payment Methods Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center mb-5">
+                    <h2 class="fw-bold mb-3">Accepted Payment Methods</h2>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col">
+                    <i class="fab fa-cc-paypal fa-3x me-4" style="color: #003087;"></i>
+                    <i class="fab fa-cc-stripe fa-3x me-4" style="color: #6772e5;"></i>
+                    <i class="fab fa-cc-visa fa-3x me-4" style="color: #1a1f71;"></i>
+                    <i class="fab fa-cc-mastercard fa-3x me-4" style="color: #eb001b;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    </div>
-    <div class="grid grid-cols-1 gap-3 mt-6">
-      <a href="https://instagram.com/TechifyRahul"
-        class="block bg-blue-500 text-white font-semibold py-2 rounded-xl shadow-lg hover:bg-blue-600 transition">
-        <i class="fas fa-comment-dots"></i>
+    <!-- Footer (same as index.html) -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-film me-2"></i>UHD Premium</h5>
+                    <p class="small">Providing high-quality entertainment since 2020</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="small mb-0">&copy; 2023 UHD Premium. All rights reserved.</p>
+                    <p class="small mb-0">Contact: support@uhdpremium.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-        Contact
-      </a>
-    </div>
-
-    <a href="index.html" class="block text-xs text-red-600 font-bold mt-4 mb-8 no-underline hover:underline">
-      <i class="fas fa-arrow-left"></i> Switch to India's payment method
-    </a>
-
-  </div>
-  <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Currency switcher functionality
+        document.querySelectorAll('.currency-selector').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.currency-selector').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                const currency = this.dataset.currency;
+                const symbol = getCurrencySymbol(currency);
+                
+                // Update all currency symbols on the page
+                document.querySelectorAll('.currency-symbol').forEach(el => {
+                    el.textContent = symbol;
+                });
+                
+                // Update amounts based on currency (you would have conversion rates)
+                updateAmounts(currency);
+            });
+        });
+        
+        function getCurrencySymbol(currency) {
+            const symbols = {
+                'USD': '$',
+                'EUR': '€',
+                'GBP': '£'
+            };
+            return symbols[currency] || '$';
+        }
+        
+        function updateAmounts(currency) {
+            // Here you would implement currency conversion
+            // For now just updating the labels
+            const amounts = {
+                'USD': [10, 20, 50],
+                'EUR': [9, 18, 45],
+                'GBP': [8, 16, 40]
+            };
+            
+            document.querySelectorAll('input[name="amount"]').forEach((input, index) => {
+                input.value = amounts[currency][index];
+                input.nextElementSibling.innerHTML = `<span class="currency-symbol">${getCurrencySymbol(currency)}</span>${amounts[currency][index]}`;
+            });
+        }
+        
+        document.getElementById('internationalDonationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let amount = document.querySelector('#internationalDonationForm input[name="amount"]:checked')?.value || 
+                         document.getElementById('customAmountInt').value;
+            
+            if (!amount || isNaN(amount) || amount <= 0) {
+                alert('Please enter a valid donation amount');
+                return;
+            }
+            
+            const currency = document.querySelector('.currency-selector.active').dataset.currency;
+            alert(`Redirecting to payment gateway for ${getCurrencySymbol(currency)}${amount} ${currency}`);
+            // Integration with PayPal/Stripe would go here
+        });
+    </script>
 </body>
-
 </html>
