@@ -22,54 +22,156 @@
             background-color: var(--dark-space);
             color: var(--star-dust);
             background-image: 
-                linear-gradient(rgba(10, 10, 32, 0.8), rgba(10, 10, 32, 0.8)),
-                url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D&w=1000&q=80');
+                linear-gradient(rgba(10, 10, 32, 0.85), rgba(10, 10, 32, 0.85)),
+                url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Fixed Logo Styling */
+        .navbar-brand {
+            display: flex;
+            align-items: center;
         }
         
-        /* Logo Fix */
         .navbar-brand img {
             height: 40px;
             margin-right: 10px;
         }
-        
-        /* Mobile Menu Fix */
+
+        /* Fixed Mobile Menu */
         .navbar-toggler {
-            border-color: var(--neon-green);
+            border: 1px solid var(--neon-green);
+            padding: 0.25rem 0.5rem;
         }
         
         .navbar-toggler-icon {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 255, 252, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            width: 1.2em;
+            height: 1.2em;
         }
-        
-        /* Rest of your CSS remains the same */
-        h1, h2, h3, h4, .navbar-brand {
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
+
+        /* Hero Section with Globe */
+        .hero-section {
+            padding: 8rem 0 6rem;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .neon-text {
-            text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+
+        .globe-container {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            position: relative;
         }
-        
-        /* ... (keep all other existing CSS rules) ... */
-        
+
+        .globe {
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><circle cx="400" cy="400" r="400" fill="%230a0a20"/><path d="M400,400m-400,0a400,400 0 1,0 800,0a400,400 0 1,0 -800,0" fill="none" stroke="%230ff0fc" stroke-width="2"/></svg>') no-repeat center;
+            background-size: contain;
+            animation: rotateGlobe 30s linear infinite;
+        }
+
+        @keyframes rotateGlobe {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Currency Selector */
+        .currency-selector {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .currency-btn {
+            background: rgba(20, 20, 50, 0.6);
+            border: 2px solid rgba(0, 255, 252, 0.3);
+            color: var(--star-dust);
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .currency-btn.active {
+            background: rgba(0, 255, 252, 0.2);
+            border-color: var(--neon-green);
+            color: var(--neon-green);
+            box-shadow: 0 0 15px rgba(0, 255, 252, 0.5);
+        }
+
+        /* Donation Form */
+        .global-card {
+            background: rgba(20, 20, 50, 0.7);
+            border: 1px solid rgba(0, 255, 252, 0.3);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .form-control, .form-select {
+            background: rgba(10, 10, 30, 0.7);
+            border: 1px solid rgba(0, 255, 252, 0.3);
+            color: white;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background: rgba(10, 10, 30, 0.9);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 0 0.25rem rgba(0, 255, 252, 0.25);
+            color: white;
+        }
+
+        /* Payment Methods Grid */
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 2rem 0;
+        }
+
+        .payment-method {
+            background: rgba(30, 30, 60, 0.7);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid rgba(0, 255, 252, 0.2);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .globe-container {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .currency-selector {
+                gap: 8px;
+            }
+            
+            .currency-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Floating Background Elements -->
-    <div class="floating-element" style="width: 300px; height: 300px; background: var(--neon-green); top: 10%; right: 5%; animation: float 18s infinite ease-in-out;"></div>
-    <div class="floating-element" style="width: 400px; height: 400px; background: var(--neon-blue); bottom: 15%; left: 5%; animation: float 25s infinite ease-in-out reverse;"></div>
-    
-    <!-- Global Navigation with Fixed Logo -->
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="https://via.placeholder.com/150x50?text=UHD+LOGO" alt="UHD Logo" onerror="this.src='https://via.placeholder.com/150x50?text=UHD+LOGO';this.onerror=null;">
+                <img src="https://i.imgur.com/JH9qK2a.png" alt="UHD Logo" onerror="this.src='https://via.placeholder.com/150x50/0a0a20/0ff0fc?text=UHD+GLOBAL';this.onerror=null;">
                 UHD GLOBAL
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,45 +196,238 @@
         </div>
     </nav>
 
-    <!-- Rest of your HTML content remains the same -->
+    <!-- Hero Section -->
     <section class="hero-section text-center">
-        <!-- ... existing hero section content ... -->
+        <div class="container">
+            <div class="globe-container">
+                <div class="globe"></div>
+            </div>
+            <h1 class="text-uppercase fw-bold mb-4" style="font-family: 'Orbitron', sans-serif; background: linear-gradient(90deg, var(--neon-green), var(--neon-blue)); -webkit-background-clip: text; background-clip: text; color: transparent;">Global Support Network</h1>
+            <p class="lead mb-4" style="max-width: 700px; margin: 0 auto;">Join our worldwide community of supporters powering the future of entertainment</p>
+        </div>
     </section>
 
-    <!-- ... rest of your existing HTML ... -->
+    <!-- Donation Section -->
+    <section id="donate" class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="global-card">
+                        <div class="text-center mb-4">
+                            <h2 class="text-uppercase" style="font-family: 'Orbitron', sans-serif; color: var(--neon-green);">Select Your Currency</h2>
+                            <p>Choose your preferred donation method</p>
+                        </div>
+                        
+                        <div class="currency-selector">
+                            <button class="currency-btn active" data-currency="USD">USD ($)</button>
+                            <button class="currency-btn" data-currency="EUR">EUR (€)</button>
+                            <button class="currency-btn" data-currency="GBP">GBP (£)</button>
+                            <button class="currency-btn" data-currency="CAD">CAD ($)</button>
+                            <button class="currency-btn" data-currency="AUD">AUD ($)</button>
+                        </div>
+                        
+                        <form id="globalDonationForm">
+                            <div class="mb-3">
+                                <label for="amount" class="form-label">Select Amount</label>
+                                <select class="form-select" id="amount" required>
+                                    <option value="">Choose an amount</option>
+                                    <option value="10">$10</option>
+                                    <option value="25">$25</option>
+                                    <option value="50">$50</option>
+                                    <option value="100">$100</option>
+                                    <option value="custom">Custom Amount</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3" id="customAmountContainer" style="display: none;">
+                                <label for="customAmount" class="form-label">Enter Custom Amount</label>
+                                <input type="number" class="form-control" id="customAmount" placeholder="Enter amount">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="country" class="form-label">Country/Region</label>
+                                <select class="form-select" id="country" required>
+                                    <option value="">Select your country</option>
+                                    <option value="US">United States</option>
+                                    <option value="GB">United Kingdom</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="DE">Germany</option>
+                                    <option value="FR">France</option>
+                                    <option value="JP">Japan</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                            </div>
+                            
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-primary" style="background: var(--neon-green); border: none; color: var(--dark-space); font-weight: 700; padding: 10px 25px;">
+                                    <i class="fas fa-paper-plane me-2"></i>Proceed to Payment
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Methods -->
+    <section id="methods" class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="text-uppercase mb-4" style="font-family: 'Orbitron', sans-serif; color: var(--neon-blue);">Global Payment Network</h2>
+                    <p class="lead mb-4">We accept all major international payment methods</p>
+                    
+                    <div class="payment-grid">
+                        <div class="payment-method" style="color: #003087;">
+                            <i class="fab fa-cc-paypal fa-3x mb-2"></i>
+                            <p>PayPal</p>
+                        </div>
+                        <div class="payment-method" style="color: #6772e5;">
+                            <i class="fab fa-cc-stripe fa-3x mb-2"></i>
+                            <p>Stripe</p>
+                        </div>
+                        <div class="payment-method" style="color: #1a1f71;">
+                            <i class="fab fa-cc-visa fa-3x mb-2"></i>
+                            <p>Visa</p>
+                        </div>
+                        <div class="payment-method" style="color: #eb001b;">
+                            <i class="fab fa-cc-mastercard fa-3x mb-2"></i>
+                            <p>Mastercard</p>
+                        </div>
+                        <div class="payment-method" style="color: #f79e1b;">
+                            <i class="fab fa-cc-amex fa-3x mb-2"></i>
+                            <p>Amex</p>
+                        </div>
+                        <div class="payment-method" style="color: #0166ff;">
+                            <i class="fab fa-cc-apple-pay fa-3x mb-2"></i>
+                            <p>Apple Pay</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-4 text-center">
+        <div class="container">
+            <p class="mb-0">&copy; 2023 UHD GLOBAL. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Mobile menu fix
-        document.addEventListener('DOMContentLoaded', function() {
-            const navbarToggler = document.querySelector('.navbar-toggler');
-            const navbarCollapse = document.querySelector('.navbar-collapse');
-            
-            navbarToggler.addEventListener('click', function() {
-                navbarCollapse.classList.toggle('show');
+        // Mobile Menu Fix
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+        
+        navbarToggler.addEventListener('click', function() {
+            navbarCollapse.classList.toggle('show');
+        });
+
+        // Currency Selection
+        const currencyBtns = document.querySelectorAll('.currency-btn');
+        let currentCurrency = 'USD';
+        
+        currencyBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                currentCurrency = this.dataset.currency;
+                
+                // Update active button
+                currencyBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update amount options
+                updateAmountOptions(currentCurrency);
             });
         });
 
-        // Logo fallback fix
-        function checkLogo() {
-            const logo = document.querySelector('.navbar-brand img');
-            if (logo.naturalWidth === 0) {
-                logo.src = 'https://via.placeholder.com/150x50?text=UHD+LOGO';
-            }
-        }
-        window.addEventListener('load', checkLogo);
-        window.addEventListener('error', checkLogo, true);
-
-        // Your existing JavaScript code
-        const currencyRates = {
-            USD: 83.50,
-            EUR: 90.25,
-            GBP: 105.75,
-            CAD: 61.20,
-            AUD: 55.60
-        };
+        // Amount Selection
+        const amountSelect = document.getElementById('amount');
+        const customAmountContainer = document.getElementById('customAmountContainer');
         
-        // ... rest of your existing JavaScript ...
+        amountSelect.addEventListener('change', function() {
+            if (this.value === 'custom') {
+                customAmountContainer.style.display = 'block';
+            } else {
+                customAmountContainer.style.display = 'none';
+            }
+        });
+
+        // Form Submission
+        const donationForm = document.getElementById('globalDonationForm');
+        
+        donationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const amount = amountSelect.value === 'custom' 
+                ? document.getElementById('customAmount').value
+                : amountSelect.value;
+                
+            const country = document.getElementById('country').value;
+            const email = document.getElementById('email').value;
+            
+            if (!amount || isNaN(amount) || amount <= 0) {
+                alert('Please enter a valid donation amount');
+                return;
+            }
+            
+            if (!country) {
+                alert('Please select your country');
+                return;
+            }
+            
+            if (!email || !email.includes('@')) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            // Show processing
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Processing...';
+            submitBtn.disabled = true;
+            
+            // Simulate payment processing
+            setTimeout(() => {
+                alert(`Thank you for your donation of ${currentCurrency} ${amount}! Redirecting to payment gateway...`);
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i> Proceed to Payment';
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        function updateAmountOptions(currency) {
+            const amounts = {
+                USD: [10, 25, 50, 100],
+                EUR: [9, 23, 46, 92],
+                GBP: [8, 21, 42, 84],
+                CAD: [13, 33, 66, 132],
+                AUD: [15, 38, 75, 150]
+            };
+            
+            const symbols = {
+                USD: '$',
+                EUR: '€',
+                GBP: '£',
+                CAD: '$',
+                AUD: '$'
+            };
+            
+            // Update amount options
+            amountSelect.innerHTML = `
+                <option value="">Choose an amount</option>
+                <option value="${amounts[currency][0]}">${symbols[currency]}${amounts[currency][0]}</option>
+                <option value="${amounts[currency][1]}">${symbols[currency]}${amounts[currency][1]}</option>
+                <option value="${amounts[currency][2]}">${symbols[currency]}${amounts[currency][2]}</option>
+                <option value="${amounts[currency][3]}">${symbols[currency]}${amounts[currency][3]}</option>
+                <option value="custom">Custom Amount</option>
+            `;
+        }
     </script>
 </body>
 </html>
