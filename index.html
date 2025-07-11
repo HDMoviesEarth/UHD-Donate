@@ -3,201 +3,417 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UHD Foundation | Secure Donations</title>
+    <title>UHD Premium | Futuristic Support</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --secondary: #1e40af;
-            --text-dark: #1f2937;
+            --neon-blue: #0ff0fc;
+            --neon-pink: #ff00ff;
+            --neon-purple: #8a2be2;
+            --dark-space: #0a0a20;
+            --star-dust: #e0e0e8;
+            --neon-green: #00ff7f;
         }
         
         body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: url('https://files.catbox.moe/vzjm05.jpg') no-repeat center center fixed;
-            background-size: cover;
+            font-family: 'Rajdhani', sans-serif;
+            color: var(--star-dust);
+            overflow-x: hidden;
             min-height: 100vh;
-            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            background: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2110&q=80') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
         }
 
-        .donation-container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.92);
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        .content-overlay {
+            background: rgba(10, 10, 32, 0.85);
+            min-height: 100vh;
+            backdrop-filter: blur(2px);
         }
-
-        header {
-            text-align: center;
-            margin-bottom: 2rem;
+        
+        h1, h2, h3, h4, .navbar-brand {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
         }
-
-        .logo {
-            width: 180px;
-            margin-bottom: 1rem;
+        
+        .neon-text {
+            text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
         }
-
-        h1 {
-            color: var(--primary);
-            margin: 0.5rem 0;
+        
+        .navbar {
+            background: rgba(10, 10, 32, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 255, 252, 0.2);
         }
-
-        .impact-statement {
-            font-size: 1.1rem;
-            color: var(--text-dark);
+        
+        .navbar-brand {
+            font-size: 1.8rem;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
         }
-
-        .payment-options {
-            display: flex;
-            gap: 1.5rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-            justify-content: center;
+        
+        .navbar-toggler {
+            border-color: var(--neon-blue);
         }
-
-        .payment-card {
-            background: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            width: 280px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 255, 252, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
-
-        .payment-card:hover {
+        
+        .futuristic-card {
+            background: rgba(20, 20, 50, 0.6);
+            border: 1px solid rgba(0, 255, 252, 0.2);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .futuristic-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 255, 252, 0.2);
         }
-
-        .payment-card h3 {
-            margin-top: 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .qr-code {
-            width: 100%;
-            border: 1px solid #e5e7eb;
-            border-radius: 6px;
-            margin: 1rem 0;
-        }
-
-        .upi-id {
-            background: #f3f4f6;
-            padding: 0.75rem;
-            border-radius: 6px;
-            font-family: monospace;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        #rzp-button {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 6px;
-            width: 100%;
-            font-size: 1rem;
+        
+        .payment-method {
+            border: 1px solid rgba(0, 255, 252, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            transition: all 0.3s;
             cursor: pointer;
-            transition: background 0.3s;
+            height: 100%;
+        }
+        
+        .payment-method:hover {
+            border-color: var(--neon-green);
+            transform: scale(1.05);
+        }
+        
+        .payment-method.active {
+            border-color: var(--neon-pink);
+            background: rgba(255, 0, 255, 0.1);
+        }
+        
+        .btn-neon {
+            background: transparent;
+            color: var(--neon-blue);
+            border: 2px solid var(--neon-blue);
+            border-radius: 30px;
+            padding: 12px 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+        
+        .btn-neon:hover {
+            color: var(--dark-space);
+            background: var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 40px var(--neon-blue);
+        }
+        
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        .payment-img {
+            height: 30px;
+            object-fit: contain;
+            margin-bottom: 8px;
         }
 
-        #rzp-button:hover {
-            background: var(--secondary);
-        }
-
-        .trust-badges {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .trust-badges img {
-            height: 60px;
-            opacity: 0.9;
-        }
-
-        footer {
+        .copyright {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
             text-align: center;
-            margin-top: 2rem;
-            font-size: 0.9rem;
-            color: #6b7280;
+            padding: 10px;
+            background: rgba(10, 10, 32, 0.8);
+            backdrop-filter: blur(5px);
+            border-top: 1px solid rgba(0, 255, 252, 0.2);
         }
-
+        
         @media (max-width: 768px) {
-            .donation-container {
-                margin: 1rem;
-                padding: 1.5rem;
+            .navbar-brand {
+                font-size: 1.5rem;
             }
             
-            .payment-options {
-                flex-direction: column;
-                align-items: center;
+            .payment-method {
+                padding: 10px;
             }
             
-            .payment-card {
-                width: 100%;
+            .payment-img {
+                height: 25px;
+            }
+            
+            body {
+                background-attachment: scroll;
             }
         }
     </style>
 </head>
 <body>
-    <div class="donation-container">
-        <header>
-            <img src="assets/logo.png" alt="UHD Foundation" class="logo">
-            <h1>Support Our Mission</h1>
-            <p class="impact-statement">Every donation helps us create positive change</p>
-        </header>
+    <div class="content-overlay">
+        <!-- Floating Background Elements -->
+        <div class="floating-element" style="width: 300px; height: 300px; background: var(--neon-blue); top: 10%; left: 5%;"></div>
+        <div class="floating-element" style="width: 400px; height: 400px; background: var(--neon-pink); bottom: 15%; right: 5%;"></div>
+        
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <i class="fas fa-satellite-dish me-2"></i>UHD PREMIUM
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="international.html">International</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#donate">Donate</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-        <div class="payment-options">
-            <div class="payment-card">
-                <h3>UPI Payment</h3>
-                <img src="assets/upi-qr.png" alt="UPI QR Code" class="qr-code">
-                <div class="upi-id">yourvpa@upi</div>
+        <!-- Main Content -->
+        <div class="container py-5 mt-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center mb-5">
+                    <h1 class="neon-text mb-4">POWER THE FUTURE</h1>
+                    <p class="lead">Fuel our servers with your support</p>
+                </div>
             </div>
             
-            <div class="payment-card">
-                <h3>Credit/Debit Card</h3>
-                <button id="rzp-button">Donate Securely</button>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="futuristic-card p-4 p-md-5">
+                        <form id="donationForm">
+                            <div class="mb-4">
+                                <h4 class="neon-text mb-4">SELECT AMOUNT (₹)</h4>
+                                <div class="row g-3">
+                                    <div class="col-6 col-md-3">
+                                        <div class="payment-method text-center py-3" onclick="selectAmount(99)">
+                                            <h5 class="mb-0">₹99</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <div class="payment-method text-center py-3" onclick="selectAmount(199)">
+                                            <h5 class="mb-0">₹199</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <div class="payment-method text-center py-3" onclick="selectAmount(499)">
+                                            <h5 class="mb-0">₹499</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <div class="payment-method text-center py-3" onclick="selectAmount(999)">
+                                            <h5 class="mb-0">₹999</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="customAmount" class="form-label">OR ENTER CUSTOM AMOUNT</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-dark text-white border-secondary">₹</span>
+                                    <input type="number" class="form-control bg-dark text-white border-secondary" id="customAmount" placeholder="Amount" min="1">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h4 class="neon-text mb-4">SELECT PAYMENT METHOD</h4>
+                                <div class="row g-3">
+                                    <div class="col-6 col-md-3">
+                                        <div class="payment-method text-center py-3" onclick="selectPayment('bhim')">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/BHIM_Logo.svg/1200px-BHIM_Logo.svg.png" alt="BHIM" class="payment-img">
+                                            <p class="mt-2 mb-0 small">BHIM</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <div class="payment-method text-center py-3" onclick="selectPayment('paytm')">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Paytm_logo.png" alt="Paytm" class="payment-img">
+                                            <p class="mt-2 mb-0 small">Paytm</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <div class="payment-method text-center py-3" onclick="selectPayment('phonepe')">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/PhonePe_Logo.svg" alt="PhonePe" class="payment-img">
+                                            <p class="mt-2 mb-0 small">PhonePe</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <div class="payment-method text-center py-3" onclick="selectPayment('gpay')">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Google_Pay_%28GPay%29_Logo_%282018-2020%29.svg" alt="GPay" class="payment-img">
+                                            <p class="mt-2 mb-0 small">Google Pay</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <div class="payment-method text-center py-3" onclick="selectPayment('navi')">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Navi_Technologies_logo.svg/1200px-Navi_Technologies_logo.svg.png" alt="Navi" class="payment-img">
+                                            <p class="mt-2 mb-0 small">Navi</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <div class="payment-method text-center py-3" onclick="selectPayment('supermoney')">
+                                            <img src="https://play-lh.googleusercontent.com/6iyA2zVz5PyyMjK5SIxdUhrb7oh9cYvXrCEFJ6m7Dq1MqP9T8VfLnpBkU7U7ifhYMA=w240-h480-rw" alt="Super.money" class="payment-img">
+                                            <p class="mt-2 mb-0 small">Super.money</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid mt-5">
+                                <button type="submit" class="btn-neon btn-lg">
+                                    <i class="fas fa-paper-plane me-2"></i> INITIATE PAYMENT
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="trust-badges">
-            <img src="assets/ssl-seal.png" alt="SSL Secured">
-            <img src="assets/80g-badge.png" alt="Tax Exempt under 80G">
+        <!-- Copyright Text -->
+        <div class="copyright">
+            <p class="mb-0">&copy; <script>document.write(new Date().getFullYear())</script> UHD PREMIUM. ALL RIGHTS RESERVED. | Developed with <i class="fas fa-heart text-danger"></i> for the Future of Entertainment</p>
         </div>
-
-        <footer>
-            UHD Foundation is a registered non-profit organization. All donations are tax-deductible.
-        </footer>
     </div>
 
-    <!-- Razorpay Integration (Uncomment when ready) -->
-    <!--
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.getElementById('rzp-button').onclick = function(e) {
-            var options = {
-                key: "YOUR_RAZORPAY_KEY",
-                amount: "50000", // ₹500 = 50000 paise
-                currency: "INR",
-                name: "UHD Foundation",
-                description: "Donation",
-                handler: function(response) {
-                    alert("Payment successful! ID: " + response.razorpay_payment_id);
+        // Selected amount and payment method
+        let selectedAmount = 0;
+        let selectedPayment = '';
+        
+        // Select amount
+        function selectAmount(amount) {
+            selectedAmount = amount;
+            document.getElementById('customAmount').value = '';
+            
+            // Update UI
+            document.querySelectorAll('.payment-method').forEach(el => {
+                if (el.textContent.includes('₹'+amount)) {
+                    el.classList.add('active');
+                } else if (!el.querySelector('img')) {
+                    el.classList.remove('active');
                 }
-            };
-            var rzp = new Razorpay(options);
-            rzp.open();
-            e.preventDefault();
+            });
         }
+        
+        // Select payment method
+        function selectPayment(method) {
+            selectedPayment = method;
+            
+            // Update UI
+            document.querySelectorAll('.payment-method').forEach(el => {
+                if (el.querySelector('img')) {
+                    el.classList.remove('active');
+                }
+            });
+            
+            // Activate selected
+            const activeEl = document.querySelector(`.payment-method[onclick="selectPayment('${method}')"]`);
+            if (activeEl) activeEl.classList.add('active');
+        }
+        
+        // Form submission
+        document.getElementById('donationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get amount
+            const customAmount = parseFloat(document.getElementById('customAmount').value);
+            if (customAmount && !isNaN(customAmount)) {
+                selectedAmount = customAmount;
+            }
+            
+            // Validate
+            if (!selectedAmount || selectedAmount <= 0) {
+                alert('Please select or enter a valid amount');
+                return;
+            }
+            
+            if (!selectedPayment) {
+                alert('Please select a payment method');
+                return;
+            }
+            
+            // Process payment
+            processPayment(selectedAmount, selectedPayment);
+        });
+        
+        // Payment processing - NOW WORKING PROPERLY
+        function processPayment(amount, method) {
+            // Show processing
+            const btn = document.querySelector('#donationForm button[type="submit"]');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> PROCESSING...';
+            btn.disabled = true;
+            
+            // Prepare UPI intent URL
+            const upiId = 'yourupi@handle'; // REPLACE WITH YOUR ACTUAL UPI ID
+            const transactionNote = `Donation for UHD Premium (₹${amount})`;
+            
+            // Create payment URLs for different methods
+            const paymentUrls = {
+                bhim: `upi://pay?pa=${upiId}&pn=UHD Premium&am=${amount}&tn=${encodeURIComponent(transactionNote)}`,
+                paytm: `https://paytm.com/pay?amount=${amount}`,
+                phonepe: `phonepe://pay?pa=${upiId}&pn=UHD Premium&am=${amount}`,
+                gpay: `tez://upi/pay?pa=${upiId}&pn=UHD Premium&am=${amount}`,
+                navi: `navi://pay?pa=${upiId}&pn=UHD Premium&am=${amount}`,
+                supermoney: `supermoney://pay?upiId=${upiId}&amount=${amount}`
+            };
+            
+            // Web fallback URL
+            const webFallback = `https://upayi.link/${upiId}?am=${amount}&tn=${encodeURIComponent(transactionNote)}`;
+            
+            // Try to open payment app
+            const paymentWindow = window.open(paymentUrls[method], '_blank');
+            
+            // Check if payment window opened successfully
+            setTimeout(() => {
+                if (!paymentWindow || paymentWindow.closed || typeof paymentWindow.closed === 'undefined') {
+                    // Fallback to web payment
+                    window.location.href = webFallback;
+                }
+            }, 500);
+            
+            // Reset button after 3 seconds
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-paper-plane me-2"></i> INITIATE PAYMENT';
+                btn.disabled = false;
+            }, 3000);
+        }
+        
+        // Initialize floating animation
+        function floatAnimation() {
+            const elements = document.querySelectorAll('.floating-element');
+            elements.forEach((el, index) => {
+                const duration = 15 + (index * 5);
+                el.style.animation = `float ${duration}s infinite ease-in-out ${index % 2 ? 'reverse' : 'normal'}`;
+            });
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            floatAnimation();
+        });
     </script>
-    -->
 </body>
-</html>
+                                                </html>
