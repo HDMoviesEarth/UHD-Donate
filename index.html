@@ -24,33 +24,14 @@
             min-height: 100vh;
             margin: 0;
             padding: 0;
+            background: url('https://wallpapers.com/images/hd/interstellar-gargantua-black-hole-3840x2160-0w6j1z8z4xu5m7l3.jpg') no-repeat center center fixed;
+            background-size: cover;
         }
 
-        #video-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-        
-        #video-background {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
-            opacity: 0.4;
-        }
-        
         .content-overlay {
-            background: rgba(10, 10, 32, 0.7);
+            background: rgba(10, 10, 32, 0.85);
             min-height: 100vh;
+            backdrop-filter: blur(2px);
         }
         
         h1, h2, h3, h4, .navbar-brand {
@@ -174,18 +155,14 @@
             .payment-img {
                 height: 25px;
             }
+            
+            body {
+                background-attachment: scroll;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Earth Rotation Video Background -->
-    <div id="video-container">
-        <video autoplay muted loop id="video-background">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-earth-rotating-1618-large.mp4" type="video/mp4">
-            Your browser does not support HTML5 video.
-        </video>
-    </div>
-
     <div class="content-overlay">
         <!-- Floating Background Elements -->
         <div class="floating-element" style="width: 300px; height: 300px; background: var(--neon-blue); top: 10%; left: 5%;"></div>
@@ -315,7 +292,7 @@
 
         <!-- Copyright Text -->
         <div class="copyright">
-            <p class="mb-0">&copy; 2023 UHD PREMIUM. ALL RIGHTS RESERVED. | Developed with <i class="fas fa-heart text-danger"></i> for the Future of Entertainment</p>
+            <p class="mb-0">&copy; <script>document.write(new Date().getFullYear())</script> UHD PREMIUM. ALL RIGHTS RESERVED. | Developed with <i class="fas fa-heart text-danger"></i> for the Future of Entertainment</p>
         </div>
     </div>
 
@@ -435,15 +412,7 @@
         // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
             floatAnimation();
-            
-            // Make sure video plays
-            const video = document.getElementById('video-background');
-            video.play().catch(e => {
-                // If autoplay fails, mute and try again
-                video.muted = true;
-                video.play().catch(e => console.log("Video play failed:", e));
-            });
         });
     </script>
 </body>
-</html>
+                                        </html>
